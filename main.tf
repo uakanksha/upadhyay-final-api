@@ -165,7 +165,7 @@ resource "aws_ecs_task_definition" "task" {
   container_definitions = jsonencode([
     {
       name      = "upadhyay-container",
-      image     = "<your-ecr-repo-url>"
+      image     = "794038254814.dkr.ecr.us-east-1.amazonaws.com/upadhyay-api-repo"
       portMappings = [{ containerPort = 5000, hostPort = 5000 }]
     }
   ])
