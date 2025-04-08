@@ -8,14 +8,14 @@ phases:
     commands:
       - echo Building the Docker image...
       - docker build -t ap-flask .
-      - docker tag ap-flask 769433671483.dkr.ecr.ca-central-1.amazonaws.com/ap-flask
+      - docker tag ap-flask 794038254814.dkr.ecr.ca-central-1.amazonaws.com/upadhyay-flask
 
   post_build:
     commands:
       - echo Pushing the Docker image...
-      - docker push 769433671483.dkr.ecr.ca-central-1.amazonaws.com/ap-flask
+      - docker push 794038254814.dkr.ecr.ca-central-1.amazonaws.com/upadhyay-flask
       - echo Writing imagedefinitions.json file...
-      - echo '[{"name":"frontend-td","imageUri":"769433671483.dkr.ecr.ca-central-1.amazonaws.com/ap-flask"}]' > ./imagedefinitions.json
+      - echo '[{"name":"frontend-td","imageUri":"794038254814.dkr.ecr.ca-central-1.amazonaws.com/upadhyay-flask"}]' > ./imagedefinitions.json
 
 artifacts:
   files:
