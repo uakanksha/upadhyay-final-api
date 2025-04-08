@@ -1,0 +1,22 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 769433671483.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t ap-flask .
+      - docker tag ap-flask 769433671483.dkr.ecr.ca-central-1.amazonaws.com/ap-flask
+
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push 769433671483.dkr.ecr.ca-central-1.amazonaws.com/ap-flask
+      - echo Writing imagedefinitions.json file...
+      - echo '[{"name":"frontend-td","imageUri":"769433671483.dkr.ecr.ca-central-1.amazonaws.com/ap-flask"}]' > ./imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json 
